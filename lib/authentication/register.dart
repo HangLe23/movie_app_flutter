@@ -5,7 +5,7 @@ import 'package:movie_app_flutter/untils/Colors/colors.dart';
 import 'package:movie_app_flutter/widget/button.dart';
 import 'package:movie_app_flutter/widget/textfields.dart';
 
-import '../screen/mainapp.dart';
+import '../screen/main/mainapp.dart';
 import '../untils/TextStyles/TextStyles.dart';
 import '../widget/buttonService.dart';
 import '../widget/driver.dart';
@@ -87,12 +87,20 @@ class _RegisterState extends State<Register> {
             ),
             Row(
               children: [
-                const DriverWidget(),
+                DriverWidget(
+                  color: CustomColors.lineGrey,
+                  height: 1,
+                  width: 150,
+                ),
                 Text(
                   'OR',
                   style: TextStyles.or,
                 ),
-                const DriverWidget()
+                DriverWidget(
+                  color: CustomColors.lineGrey,
+                  height: 1,
+                  width: 150,
+                )
               ],
             ),
             AuthenService(

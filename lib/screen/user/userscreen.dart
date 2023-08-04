@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_flutter/widget/button.dart';
 import 'package:movie_app_flutter/widget/textfields.dart';
 
-import '../authentication/login.dart';
-import '../untils/Colors/colors.dart';
-import '../untils/TextStyles/TextStyles.dart';
+import '../../authentication/login.dart';
+import '../../untils/Colors/colors.dart';
+import '../../untils/TextStyles/TextStyles.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});

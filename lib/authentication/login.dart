@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_flutter/authentication/authen_service.dart';
 import 'package:movie_app_flutter/authentication/forgot_password.dart';
 import 'package:movie_app_flutter/authentication/register.dart';
-import 'package:movie_app_flutter/screen/mainapp.dart';
+import 'package:movie_app_flutter/screen/main/mainapp.dart';
 import 'package:movie_app_flutter/untils/Colors/colors.dart';
 import 'package:movie_app_flutter/untils/TextStyles/TextStyles.dart';
 import 'package:movie_app_flutter/widget/buttonService.dart';
@@ -107,12 +107,20 @@ class _LoginState extends State<Login> {
             ),
             Row(
               children: [
-                const DriverWidget(),
+                DriverWidget(
+                  color: CustomColors.lineGrey,
+                  height: 1,
+                  width: 150,
+                ),
                 Text(
                   'OR',
                   style: TextStyles.or,
                 ),
-                const DriverWidget()
+                DriverWidget(
+                  color: CustomColors.lineGrey,
+                  height: 1,
+                  width: 150,
+                )
               ],
             ),
             AuthenService(

@@ -65,7 +65,7 @@ class TextStyles {
       fontFamily: 'Lato',
       fontWeight: FontWeight.w400,
       fontSize: 19.27,
-      color: CustomColors.selected);
+      color: CustomColors.gradientbg);
   static TextStyle lato400Size20 = TextStyle(
       fontFamily: 'Lato',
       fontWeight: FontWeight.w400,

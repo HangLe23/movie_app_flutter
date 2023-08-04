@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/screen/userscreen.dart';
+import 'package:movie_app_flutter/screen/user/userscreen.dart';
 
-import '../untils/Colors/colors.dart';
-import 'discoverscreen.dart';
-import 'homescreen.dart';
+import '../../untils/Colors/colors.dart';
+import '../discover/discoverscreen.dart';
+import '../home/homescreen.dart';
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -25,8 +25,8 @@ class _MainAppState extends State<MainApp> {
           backgroundColor: const Color(0xFF15141f),
           currentIndex: currentIndex,
           onTap: (index) => onchange(index),
-          selectedItemColor: CustomColors.selected,
-          unselectedItemColor: CustomColors.unselected,
+          selectedItemColor: CustomColors.gradientbg,
+          unselectedItemColor: CustomColors.abbey,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
