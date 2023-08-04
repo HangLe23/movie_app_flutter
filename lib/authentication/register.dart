@@ -22,6 +22,7 @@ class _RegisterState extends State<Register> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirm = TextEditingController();
+  TextEditingController name = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,92 +35,117 @@ class _RegisterState extends State<Register> {
         backgroundColor: Colors.transparent, // Xóa màu nền của AppBar
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          TextFieldWidget(textedit: email, hint: 'Enter your email'),
-          const SizedBox(
-            height: 20,
-          ),
-          TextFieldWidget(textedit: password, hint: 'Enter your password'),
-          const SizedBox(
-            height: 20,
-          ),
-          TextFieldWidget(textedit: confirm, hint: 'Confirm your password'),
-          const SizedBox(
-            height: 20,
-          ),
-          ButtonWidget(
-            function: () {
-              FirebaseAuth.instance
-                  .createUserWithEmailAndPassword(
-                      email: email.text, password: password.text)
-                  .then((value) {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const Login()));
-              });
-            },
-            text: 'Sign Up',
-          ),
-          Row(
-            children: [
-              const DriverWidget(),
-              Text(
-                'OR',
-                style: TextStyles.or,
-              ),
-              const DriverWidget()
-            ],
-          ),
-          AuthenService(
-              function: () {
-                AuthenServiceOnTap().signInWithGoogle().then((value) {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const MainApp()));
-                });
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextFieldWidget(textedit: email, hint: 'Enter your email'),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFieldWidget(textedit: password, hint: 'Enter your password'),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFieldWidget(textedit: confirm, hint: 'Confirm your password'),
+            const SizedBox(
+              height: 20,
+            ),
+            ButtonWidget(
+              function: () async {
+                if (password.text == confirm.text) {
+                  if (password.text.length > 8) {
+                    try {
+                      UserCredential userCredential = await FirebaseAuth
+                          .instance
+                          .createUserWithEmailAndPassword(
+                        email: email.text,
+                        password: password.text,
+                      );
+                      // Gửi email xác minh cho người dùng
+                      await userCredential.user?.sendEmailVerification();
+
+                      // Chuyển hướng đến màn hình đăng nhập sau khi đăng ký thành công
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Login()));
+                      // CollectionReference userCollection =
+                      //     FirebaseFirestore.instance.collection('users');
+                      // await userCollection
+                      //     .doc(userCredential.user?.uid)
+                      //     .set({'email': email.text, 'name': null});
+                    } catch (e) {
+                      // Xử lý các lỗi có thể xảy ra trong quá trình đăng ký
+                      print('Lỗi khi đăng ký người dùng: $e');
+                    }
+                  } else {
+                    print('Mat khau khong du ky tu');
+                  }
+                } else {
+                  print('Mat khau khong dung');
+                }
               },
-              text: 'Login with google',
-              image: 'assets/images/google.png'),
-          const SizedBox(
-            height: 5,
-          ),
-          AuthenService(
-              function: () {},
-              text: 'Login with facebook',
-              image: 'assets/images/Facebook.png'),
-          const SizedBox(
-            height: 5,
-          ),
-          AuthenService(
-              function: () {},
-              text: 'Login with apple',
-              image: 'assets/images/apple.png'),
-          Row(
-            children: [
-              const SizedBox(
-                width: 50,
-              ),
-              Text(
-                'You have an account?',
-                style: TextStyles.lato400Size20,
-              ),
-              const Spacer(),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const Login(),
-                  ));
-                },
-                child: Text(
-                  'Sign In',
-                  style: TextStyles.signup,
+              text: 'Đăng ký',
+            ),
+            Row(
+              children: [
+                const DriverWidget(),
+                Text(
+                  'OR',
+                  style: TextStyles.or,
                 ),
-              ),
-              const SizedBox(
-                width: 40,
-              )
-            ],
-          )
-        ],
+                const DriverWidget()
+              ],
+            ),
+            AuthenService(
+                function: () {
+                  AuthenServiceOnTap().signInWithGoogle().then((value) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const MainApp()));
+                  });
+                },
+                text: 'Login with google',
+                image: 'assets/images/google.png'),
+            const SizedBox(
+              height: 5,
+            ),
+            AuthenService(
+                function: () {},
+                text: 'Login with facebook',
+                image: 'assets/images/Facebook.png'),
+            const SizedBox(
+              height: 5,
+            ),
+            AuthenService(
+                function: () {},
+                text: 'Login with apple',
+                image: 'assets/images/apple.png'),
+            Row(
+              children: [
+                const SizedBox(
+                  width: 50,
+                ),
+                Text(
+                  'You have an account?',
+                  style: TextStyles.lato400Size20,
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Login(),
+                    ));
+                  },
+                  child: Text(
+                    'Sign In',
+                    style: TextStyles.signup,
+                  ),
+                ),
+                const SizedBox(
+                  width: 40,
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

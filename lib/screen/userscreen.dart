@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app_flutter/widget/button.dart';
 import 'package:movie_app_flutter/widget/textfields.dart';
 
 import '../authentication/login.dart';
@@ -15,7 +16,17 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   final TextEditingController email = TextEditingController();
+  final TextEditingController name = TextEditingController();
   final user = FirebaseAuth.instance.currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    email.text = user?.email ?? '';
+    name.text = user?.displayName ??
+        ''; // Set the initial value of the email controller
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,30 +34,49 @@ class _UserScreenState extends State<UserScreen> {
       appBar: AppBar(
         title: Row(
           children: [
+            const SizedBox(
+              width: 150,
+            ),
             Text(
               'Profile',
               style: TextStyles.tittle,
             ),
             const Spacer(),
             TextButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut().then((value) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const Login(),
-                    ));
-                  });
-                },
-                child: Text(
-                  'Logout',
-                  style: TextStyles.lato500Size24,
-                ))
+              onPressed: () {
+                FirebaseAuth.instance.signOut().then((value) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const Login(),
+                  ));
+                });
+              },
+              child: Text(
+                'Logout',
+                style: TextStyles.lato500Size24,
+              ),
+            ),
           ],
         ),
         backgroundColor: Colors.transparent, // Xóa màu nền của AppBar
         elevation: 0,
       ),
       body: Column(
-        children: [TextFieldWidget(textedit: email, hint: '')],
+        children: [
+          TextFieldWidget(textedit: name, hint: ''),
+          const SizedBox(
+            height: 20,
+          ),
+          TextFieldWidget(textedit: email, hint: ''),
+          const SizedBox(
+            height: 20,
+          ),
+          ButtonWidget(
+              function: () {
+                user?.updateDisplayName(name.text);
+                user?.updateEmail(email.text);
+              },
+              text: 'Save')
+        ],
       ),
     );
   }

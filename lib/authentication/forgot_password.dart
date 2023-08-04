@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/untils/Colors/colors.dart';
 import 'package:movie_app_flutter/widget/button.dart';
 import 'package:movie_app_flutter/widget/textfields.dart';
 
@@ -16,7 +15,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroudcolor,
       appBar: AppBar(
         title: const Text('Forgot Password'),
       ),

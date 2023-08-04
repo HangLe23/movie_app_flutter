@@ -60,9 +60,12 @@ class _MainAppState extends State<MainApp> {
     }
   }
 
-  onchange(int index) {
+  onchange(int index) async {
     setState(() {
       currentIndex = index;
     });
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // String packageName = packageInfo.packageName;
+    // print(packageName);
   }
 }
