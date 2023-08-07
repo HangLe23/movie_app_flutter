@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/authentication/login.dart';
+import 'package:movie_app_flutter/authentication/login/login.dart';
 import 'package:movie_app_flutter/untils/Colors/colors.dart';
 import 'package:movie_app_flutter/widget/button.dart';
 import 'package:movie_app_flutter/widget/textfields.dart';
 
-import '../screen/main/mainapp.dart';
-import '../untils/TextStyles/TextStyles.dart';
-import '../widget/buttonService.dart';
-import '../widget/driver.dart';
-import 'authen_service.dart';
+import '../../screen/main/mainapp.dart';
+import '../../untils/TextStyles/TextStyles.dart';
+import '../../widget/buttonService.dart';
+import '../../widget/driver.dart';
+import '../authen_service.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});

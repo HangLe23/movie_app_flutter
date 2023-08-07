@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_flutter/authentication/authen_service.dart';
-import 'package:movie_app_flutter/authentication/forgot_password.dart';
-import 'package:movie_app_flutter/authentication/register.dart';
+import 'package:movie_app_flutter/authentication/forgot_password/forgot_password.dart';
+import 'package:movie_app_flutter/authentication/register/register.dart';
 import 'package:movie_app_flutter/screen/main/mainapp.dart';
 import 'package:movie_app_flutter/untils/Colors/colors.dart';
 import 'package:movie_app_flutter/untils/TextStyles/TextStyles.dart';
 import 'package:movie_app_flutter/widget/buttonService.dart';
 import 'package:movie_app_flutter/widget/driver.dart';
 
-import '../widget/button.dart';
-import '../widget/textfields.dart';
+import '../../widget/button.dart';
+import '../../widget/textfields.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
