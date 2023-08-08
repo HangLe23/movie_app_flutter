@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/screen/main/mainapp.dart';
+import 'package:movie_app_flutter/authentication/login/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MainApp(),
+      home: Login(),
       debugShowCheckedModeBanner: false,
     );
   }

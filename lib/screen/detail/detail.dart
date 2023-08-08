@@ -8,7 +8,6 @@ import 'package:movie_app_flutter/widget/driver.dart';
 import '../../untils/Colors/colors.dart';
 import '../../untils/Icons/icon_play.dart';
 import '../../untils/TextStyles/TextStyles.dart';
-import '../cast_and_drew/cast_and_drew.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({super.key});
@@ -59,6 +58,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ))
           ],
         ),
+        const SizedBox(height: 10),
         Row(
           children: [
             const SizedBox(
@@ -210,24 +210,28 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
             const Spacer(),
             BlocProvider(
-              create: (context) =>
-                  DetailBloc()..add(SwitchScreen(ischange: '')),
+              create: (context) => DetailBloc(),
               child: BlocBuilder<DetailBloc, DetailState>(
                 builder: (context, state) {
-                  return TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const CastAndDrew(),
-                      ));
-                    },
-                    child: Text(
-                      'More... ',
-                      style: TextStyles.decription,
-                    ),
-                  );
+                  if (state is DetailInitial || state is Switched) {
+                    return TextButton(
+                      onPressed: () {
+                        BlocProvider.of<DetailBloc>(context)
+                            .add(SwitchScreen(context: context));
+                      },
+                      child: Text(
+                        'More... ',
+                        style: TextStyles.decription,
+                      ),
+                    );
+                  } else if (state is LoadSwitch) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return Container();
                 },
               ),
             )
+
             // Handle other states or edge cases
           ],
         ),

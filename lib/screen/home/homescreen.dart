@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: CustomColors.backgroudcolor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Home',
           style: TextStyles.tittle,

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenServiceOnTap {
-  Future<UserCredential> signInWithGoogle() async {
+  Future<void> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -17,6 +17,20 @@ class AuthenServiceOnTap {
     );
 
     // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  Future<void> signIn({required String email, required String password}) async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+  }
+
+  Future<void> signUp({required String email, required String password}) async {
+    await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

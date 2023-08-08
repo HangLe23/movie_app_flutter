@@ -5,4 +5,6 @@ abstract class DetailState {}
 
 class DetailInitial extends DetailState {}
 
-class MoreCastAndDrew extends DetailState {}
+class Switched extends DetailState {}
+
+class LoadSwitch extends DetailInitial {}

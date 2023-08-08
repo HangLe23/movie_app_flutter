@@ -10,6 +10,8 @@ class CastAndDrew extends StatefulWidget {
 class _CastAndDrewState extends State<CastAndDrew> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: Center(child: Text('Cast and Drew')),
+    );
   }
 }

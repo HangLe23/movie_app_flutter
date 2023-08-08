@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app_flutter/screen/user/userscreen.dart';
+import 'package:movie_app_flutter/screen/profile/profilescreen.dart';
 
 import '../../untils/Colors/colors.dart';
 import '../discover/discoverscreen.dart';
