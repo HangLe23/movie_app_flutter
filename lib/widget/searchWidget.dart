@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../untils/TextStyles/TextStyles.dart';
 
-class TextFieldWidget extends StatelessWidget {
+class SearchWidget extends StatelessWidget {
   final TextEditingController textedit;
   final String hint;
   final Color color;
+  final Function function;
 
-  const TextFieldWidget(
-      {super.key,
-      required this.textedit,
-      required this.hint,
-      required this.color});
+  const SearchWidget({
+    super.key,
+    required this.textedit,
+    required this.hint,
+    required this.color,
+    required this.function,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +26,11 @@ class TextFieldWidget extends StatelessWidget {
           border: Border.all(color: Colors.white),
           color: color),
       child: TextField(
+        onChanged: function(textedit.text),
         controller: textedit,
         style: TextStyles.lato400Size20,
         decoration: InputDecoration(
+            prefixIcon: const Icon(Icons.search),
             contentPadding: const EdgeInsets.all(10),
             hintText: hint,
             border: InputBorder.none),

@@ -20,7 +20,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ),
       body: Column(
         children: [
-          TextFieldWidget(textedit: email, hint: 'Enter your email'),
+          TextFieldWidget(
+              textedit: email, hint: 'Enter your email', color: Colors.white30),
           ButtonWidget(
               function: () {
                 FirebaseAuth.instance.sendPasswordResetEmail(email: email.text);

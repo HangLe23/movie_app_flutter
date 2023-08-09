@@ -48,17 +48,24 @@ class _RegisterState extends State<Register> {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    TextFieldWidget(textedit: email, hint: 'Enter your email'),
+                    TextFieldWidget(
+                        textedit: email,
+                        hint: 'Enter your email',
+                        color: Colors.white30),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFieldWidget(
-                        textedit: password, hint: 'Enter your password'),
+                        textedit: password,
+                        hint: 'Enter your password',
+                        color: Colors.white30),
                     const SizedBox(
                       height: 20,
                     ),
                     TextFieldWidget(
-                        textedit: confirm, hint: 'Confirm your password'),
+                        textedit: confirm,
+                        hint: 'Confirm your password',
+                        color: Colors.white30),
                     const SizedBox(
                       height: 20,
                     ),

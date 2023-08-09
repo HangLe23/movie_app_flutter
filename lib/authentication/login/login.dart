@@ -70,7 +70,10 @@ class _LoginState extends State<Login> {
                     const SizedBox(
                       height: 5,
                     ),
-                    TextFieldWidget(textedit: email, hint: 'Enter your email'),
+                    TextFieldWidget(
+                        textedit: email,
+                        hint: 'Enter your email',
+                        color: Colors.white30),
                     const SizedBox(
                       height: 10,
                     ),
@@ -85,7 +88,9 @@ class _LoginState extends State<Login> {
                       height: 5,
                     ),
                     TextFieldWidget(
-                        textedit: password, hint: 'Enter your password'),
+                        textedit: password,
+                        hint: 'Enter your password',
+                        color: Colors.white30),
                     Row(
                       children: [
                         const Spacer(),

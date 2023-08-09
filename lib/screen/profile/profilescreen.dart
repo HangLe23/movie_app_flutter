@@ -89,13 +89,15 @@ class _UserScreenState extends State<UserScreen> {
                       Text('Name', style: TextStyles.lato400Size20)
                     ]),
                     const SizedBox(height: 5),
-                    TextFieldWidget(textedit: name, hint: ''),
+                    TextFieldWidget(
+                        textedit: name, hint: '', color: Colors.white30),
                     const SizedBox(height: 20),
                     Row(children: [
                       Text('Email', style: TextStyles.lato400Size20)
                     ]),
                     const SizedBox(height: 5),
-                    TextFieldWidget(textedit: email, hint: ''),
+                    TextFieldWidget(
+                        textedit: email, hint: '', color: Colors.white30),
                     const SizedBox(height: 20),
                     ButtonWidget(
                       function: () {

@@ -80,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
                     return SizedBox(
-                        height: 230, child: MockData().TopRateImages[index]);
+                        height: 230, child: MockData().topRateImages[index]);
                   },
                   separatorBuilder: (BuildContext context, int index) =>
                       const SizedBox(
                         width: 15,
                       ),
-                  itemCount: MockData().TopRateImages.length))
+                  itemCount: MockData().topRateImages.length))
         ],
       ),
     );
