@@ -90,7 +90,10 @@ class _RegisterState extends State<Register> {
                               print('Lỗi khi đăng ký người dùng: $e');
                             }
                           } else {
-                            print('Mat khau khong du ky tu');
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text('Mat Khau khong du ky tu'),
+                            ));
                           }
                         } else {
                           print('Mat khau khong dung');

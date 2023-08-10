@@ -26,16 +26,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignUp>(
       (event, emit) async {
         emit(Loading());
-        await AuthenServiceOnTap()
-            .signUp(
-              email: event.email,
-              password: event.password,
-            )
-            .then((value) => {
-                  Navigator.of(event.context).push(
-                      MaterialPageRoute(builder: (context) => const Login()))
-                });
-        emit(Authenticated(FirebaseAuth.instance.currentUser!));
+        try {
+          await AuthenServiceOnTap()
+              .signUp(email: event.email, password: event.password);
+          emit(Authenticated(FirebaseAuth.instance.currentUser!));
+        } catch (e) {
+          emit(AuthenError());
+          emit(AuthInitial());
+        }
       },
     );
     on<GoogleSignIn>(
