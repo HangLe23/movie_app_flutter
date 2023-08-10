@@ -7,7 +7,7 @@ import 'package:movie_app_flutter/widget/textfields.dart';
 
 import '../../untils/TextStyles/TextStyles.dart';
 import '../../widget/buttonService.dart';
-import '../../widget/driver.dart';
+import '../../widget/divider.dart';
 import '../bloc/auth_bloc.dart';
 
 class Register extends StatefulWidget {
@@ -28,9 +28,11 @@ class _RegisterState extends State<Register> {
       backgroundColor: CustomColors.backgroudcolor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          'Sign Up',
-          style: TextStyles.titleAuthen,
+        title: Center(
+          child: Text(
+            'THE MOVIE',
+            style: TextStyles.titleTheMovie,
+          ),
         ),
         backgroundColor: Colors.transparent, // Xóa màu nền của AppBar
         elevation: 0,
@@ -48,6 +50,9 @@ class _RegisterState extends State<Register> {
               return SingleChildScrollView(
                 child: Column(
                   children: [
+                    Image.asset('assets/images/themovie_app_icon.png',
+                        height: 200),
+                    Text('Register', style: TextStyles.titleAuthen),
                     TextFieldWidget(
                         textedit: email,
                         hint: 'Enter your email',
@@ -95,7 +100,7 @@ class _RegisterState extends State<Register> {
                     ),
                     Row(
                       children: [
-                        DriverWidget(
+                        DividerWidget(
                           color: CustomColors.lineGrey,
                           height: 1,
                           width: 150,
@@ -104,7 +109,7 @@ class _RegisterState extends State<Register> {
                           'OR',
                           style: TextStyles.or,
                         ),
-                        DriverWidget(
+                        DividerWidget(
                           color: CustomColors.lineGrey,
                           height: 1,
                           width: 150,

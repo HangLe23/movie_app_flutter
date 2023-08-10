@@ -5,7 +5,7 @@ import 'package:movie_app_flutter/authentication/register/register.dart';
 import 'package:movie_app_flutter/untils/Colors/colors.dart';
 import 'package:movie_app_flutter/untils/TextStyles/TextStyles.dart';
 import 'package:movie_app_flutter/widget/buttonService.dart';
-import 'package:movie_app_flutter/widget/driver.dart';
+import 'package:movie_app_flutter/widget/divider.dart';
 
 import '../../widget/button.dart';
 import '../../widget/textfields.dart';
@@ -122,7 +122,7 @@ class _LoginState extends State<Login> {
                     ),
                     Row(
                       children: [
-                        DriverWidget(
+                        DividerWidget(
                           color: CustomColors.lineGrey,
                           height: 1,
                           width: 150,
@@ -131,7 +131,7 @@ class _LoginState extends State<Login> {
                           'OR',
                           style: TextStyles.or,
                         ),
-                        DriverWidget(
+                        DividerWidget(
                           color: CustomColors.lineGrey,
                           height: 1,
                           width: 150,

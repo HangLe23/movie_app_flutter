@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_flutter/screen/detail/bloc/detail_bloc.dart';
 import 'package:movie_app_flutter/untils/Icons/icons.dart';
 import 'package:movie_app_flutter/widget/cards.dart';
-import 'package:movie_app_flutter/widget/driver.dart';
+import 'package:movie_app_flutter/widget/divider.dart';
 
 import '../../untils/Colors/colors.dart';
 import '../../untils/Icons/icon_play.dart';
@@ -106,7 +106,7 @@ class _DetailScreenState extends State<DetailScreen> {
             )
           ],
         ),
-        DriverWidget(
+        DividerWidget(
             height: 1, width: double.infinity, color: CustomColors.lineWhite),
         Row(
           children: [
@@ -166,7 +166,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 color: CustomColors.rectangle),
           ],
         ),
-        DriverWidget(
+        DividerWidget(
             height: 1, width: double.infinity, color: CustomColors.lineWhite),
         Row(
           children: [

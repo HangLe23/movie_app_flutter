@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DriverWidget extends StatelessWidget {
+class DividerWidget extends StatelessWidget {
   final double height, width;
   final Color color;
-  const DriverWidget(
+  const DividerWidget(
       {super.key,
       required this.height,
       required this.width,
