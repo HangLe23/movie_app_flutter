@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../items/cast_drew_item.dart';
 import '../items/movie_item.dart';
 import '../items/top_rate_item.dart';
+import '../untils/TextStyles/TextStyles.dart';
 
 class MockData {
   List<TopRateItem> topRateImages = [
@@ -36,16 +39,24 @@ class MockData {
     ),
     const MovieItem(
       imageUrl: 'assets/images/JohnLeguizamo.png',
-      name: 'Mu (2020)',
+      name: 'Mulan (2020)',
     ),
     const MovieItem(
       imageUrl: 'assets/images/HarleyQuinn.png',
-      name: 'Harley Quinn',
+      name: 'Birds of Prey (2020)',
     ),
     const MovieItem(
       imageUrl: 'assets/images/movies.png',
-      name: 'Movies',
+      name: 'Now You See Me 2 (2016)',
     ),
+    const MovieItem(
+      imageUrl: 'assets/images/EnolaHolmes.png',
+      name: 'Enola Holmes (2020)',
+    ),
+    const MovieItem(
+      imageUrl: 'assets/images/ReadyPlayerOne.png',
+      name: 'Ready Player One (2018)',
+    )
   ];
   List<CastDrewItem> castDrewItem = [
     const CastDrewItem(
@@ -80,5 +91,11 @@ class MockData {
       imageUrl: 'assets/images/JohnLeguizamo.png',
       name: 'John Leguizamo',
     ),
+  ];
+  List<Widget> tabs = [
+    Text('Movies', style: TextStyles.tab),
+    Text('TV series', style: TextStyles.tab),
+    Text('Documentary', style: TextStyles.tab),
+    Text('Sports', style: TextStyles.tab),
   ];
 }

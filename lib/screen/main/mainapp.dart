@@ -36,15 +36,15 @@ class _MainAppState extends State<MainApp> {
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  label: 'Home',
+                  label: '',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.play_arrow),
-                  label: 'Play',
+                  label: '',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person),
-                  label: 'Info',
+                  label: '',
                 ),
               ],
             ),

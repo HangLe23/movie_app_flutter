@@ -5,12 +5,17 @@ part 'discover_event.dart';
 part 'discover_state.dart';
 
 class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
-  DiscoverBloc() : super(DiscoverInitial()) {
+  DiscoverBloc() : super(const DiscoverInitial(index: 0)) {
     on<TextChange>((event, emit) {
       if (event.text.isEmpty) {
-        emit(DiscoverInitial());
+        emit(const DiscoverInitial(index: 0));
       } else {
-        emit(SerchResult(result: event.text));
+        emit(SerchResult(result: event.text, index: 0));
+      }
+    });
+    on<TabChange>((event, emit) {
+      if (state is TabChange) {
+        emit(DiscoverInitial(index: event.index));
       }
     });
   }

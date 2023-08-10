@@ -23,10 +23,14 @@ class MovieItem extends StatelessWidget {
         },
         child: Column(
           children: [
-            Image.asset(imageUrl),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: Image.asset(imageUrl)),
+            const SizedBox(height: 15),
             Text(
               name,
               style: TextStyles.lato400Size14,
+              textAlign: TextAlign.left,
             ),
           ],
         ));

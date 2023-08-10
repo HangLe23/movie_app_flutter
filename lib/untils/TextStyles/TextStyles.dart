@@ -61,11 +61,11 @@ class TextStyles {
       fontWeight: FontWeight.w500,
       fontSize: 16.86,
       color: CustomColors.hint);
-  static TextStyle selected = TextStyle(
-      fontFamily: 'Lato',
-      fontWeight: FontWeight.w400,
-      fontSize: 19.27,
-      color: CustomColors.gradientbg);
+  static TextStyle tab = const TextStyle(
+    fontFamily: 'Lato',
+    fontWeight: FontWeight.w400,
+    fontSize: 19.27,
+  );
   static TextStyle lato400Size20 = TextStyle(
       fontFamily: 'Lato',
       fontWeight: FontWeight.w400,
