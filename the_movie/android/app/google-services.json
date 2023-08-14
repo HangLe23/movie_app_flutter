@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "128449328985",
+    "project_id": "movieapp-a415c",
+    "storage_bucket": "movieapp-a415c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128449328985:android:b44919b40038e7c97f3e48",
+        "android_client_info": {
+          "package_name": "com.example.the_movie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128449328985-p7698skqkc1cgj6a9u1rg533ogholba4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.the_movie",
+            "certificate_hash": "fe12b2acf99c072caa97b8040d1e8268b288a2ff"
+          }
+        },
+        {
+          "client_id": "128449328985-7itnqvd4lfljf3uqiqa249cfnlerhe0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnA5Oi61PyeYmvxMsB4u9jeIXB4ZY6LlM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128449328985-7itnqvd4lfljf3uqiqa249cfnlerhe0r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "128449328985-4h65cpk5kgmq22h6ise0oolhnh5ag1dh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterFirebase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
