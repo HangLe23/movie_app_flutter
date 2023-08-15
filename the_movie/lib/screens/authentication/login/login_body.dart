@@ -49,147 +49,142 @@ class _LoginBodyState extends State<LoginBody> {
             );
           }
           if (state is AuthenInitial) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: SingleChildScrollView(
-                  reverse: true,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              reverse: true,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/themovie_app_icon.png',
+                      height: 200),
+                  Text('Login', style: TextStyles.titleAuthen),
+                  const SizedBox(height: 20),
+                  TextFieldWidget(
+                    validator: (value) {
+                      return value != null && !EmailValidator.validate(value)
+                          ? 'Enter a valid email'
+                          : null;
+                    },
+                    hint: 'Enter your email',
+                    textedit: email,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFieldWidget(
+                    hint: 'Enter your password',
+                    textedit: pass,
+                    validator: (value) {
+                      return value != null && value.length < 6
+                          ? "Enter min 6 characters"
+                          : null;
+                    },
+                  ),
+                  Row(
                     children: [
-                      Image.asset('assets/images/themovie_app_icon.png',
-                          height: 200),
-                      Text('Register', style: TextStyles.titleAuthen),
-                      TextFieldWidget(
-                        function: (value) {
-                          return value != null &&
-                                  !EmailValidator.validate(value)
-                              ? 'Enter a valid email'
-                              : null;
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ForgotPassWord()));
                         },
-                        hint: 'Enter your email',
-                        textedit: email,
+                        child: Text(
+                          'Forgot password?',
+                          style: TextStyles.bluetext,
+                        ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextFieldWidget(
-                        function: (value) {
-                          return value != null && value.length < 6
-                              ? "Enter min 6 characters"
-                              : null;
-                        },
-                        hint: 'Enter your password',
-                        textedit: pass,
-                      ),
-                      Row(
-                        children: [
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ForgotPassWord()));
-                            },
-                            child: Text(
-                              'Forgot password?',
-                              style: TextStyles.bluetext,
-                            ),
+                    ],
+                  ),
+                  ButtonWidget(
+                    text: 'Sign in',
+                    function: () {
+                      if (key.currentState!.validate()) {
+                        BlocProvider.of<AuthenBloc>(context).add(
+                          SignIn(email.text, pass.text),
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  MainApp(FirebaseAuth.instance.currentUser!)),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Invalid'),
+                            backgroundColor: Colors.red,
                           ),
-                        ],
+                        );
+                      }
+                    },
+                  ),
+                  Row(
+                    children: [
+                      DividerWidget(
+                        color: CustomColors.lineGrey,
+                        height: 1,
+                        width: 150,
                       ),
-                      ButtonWidget(
-                        text: 'Sign in',
-                        function: () {
-                          if (key.currentState!.validate()) {
-                            BlocProvider.of<AuthenBloc>(context).add(
-                              SignIn(email.text, pass.text),
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MainApp(
-                                      FirebaseAuth.instance.currentUser!)),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Invalid'),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
-                          }
-                        },
+                      Text(
+                        'OR',
+                        style: TextStyles.or,
                       ),
-                      Row(
-                        children: [
-                          DividerWidget(
-                            color: CustomColors.lineGrey,
-                            height: 1,
-                            width: 150,
-                          ),
-                          Text(
-                            'OR',
-                            style: TextStyles.or,
-                          ),
-                          DividerWidget(
-                            color: CustomColors.lineGrey,
-                            height: 1,
-                            width: 150,
-                          )
-                        ],
-                      ),
-                      AuthenService(
-                          function: () {
-                            BlocProvider.of<AuthenBloc>(context).add(
-                              GoogleSignIn(),
-                            );
-                          },
-                          text: 'Login with google',
-                          image: 'assets/images/google.png'),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      AuthenService(
-                          function: () {},
-                          text: 'Login with facebook',
-                          image: 'assets/images/Facebook.png'),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      AuthenService(
-                          function: () {},
-                          text: 'Login with apple',
-                          image: 'assets/images/apple.png'),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 50,
-                          ),
-                          Text(
-                            'You have an account?',
-                            style: TextStyles.lato400Size20,
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const Register(),
-                              ));
-                            },
-                            child: Text(
-                              'Sign In',
-                              style: TextStyles.signup,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 40,
-                          )
-                        ],
+                      DividerWidget(
+                        color: CustomColors.lineGrey,
+                        height: 1,
+                        width: 150,
                       )
                     ],
                   ),
-                ),
+                  AuthenService(
+                      function: () {
+                        BlocProvider.of<AuthenBloc>(context).add(
+                          GoogleSignIn(),
+                        );
+                      },
+                      text: 'Login with google',
+                      image: 'assets/images/google.png'),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  AuthenService(
+                      function: () {},
+                      text: 'Login with facebook',
+                      image: 'assets/images/Facebook.png'),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  AuthenService(
+                      function: () {},
+                      text: 'Login with apple',
+                      image: 'assets/images/apple.png'),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      Text(
+                        'You have an account?',
+                        style: TextStyles.lato400Size20,
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Register(),
+                          ));
+                        },
+                        child: Text(
+                          'Sign In',
+                          style: TextStyles.signup,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 40,
+                      )
+                    ],
+                  )
+                ],
               ),
             );
           }
