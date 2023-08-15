@@ -21,8 +21,10 @@ class AuthenBloc extends Bloc<AuthenEvent, AuthenState> {
     on<SignUp>((event, emit) async {
       emit(Loading());
       try {
-        await AuthenRepository()
-            .signUp(email: event.email, password: event.password);
+        await AuthenRepository().signUp(
+            email: event.email,
+            password: event.password,
+            confirm: event.confirmPass);
       } catch (e) {
         emit(AuthenError(e.toString()));
         emit(AuthenInitial());
