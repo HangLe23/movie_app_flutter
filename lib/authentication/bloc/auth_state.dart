@@ -10,6 +10,9 @@ class Authenticated extends AuthState {
   Authenticated(this.user);
 }
 
-class AuthenError extends AuthState {}
+class AuthenError extends AuthState {
+  final String error;
+  AuthenError(this.error);
+}
 
 class Loading extends AuthState {}

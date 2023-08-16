@@ -13,21 +13,22 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: function,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            color: Colors.red,
+    return MaterialButton(
+      onPressed: function,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          color: Colors.red,
+        ),
+        width: 350,
+        height: 50,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyles.lato400Size24,
           ),
-          width: 350,
-          height: 50,
-          child: Center(
-            child: Text(
-              text,
-              style: TextStyles.lato400Size24,
-            ),
-          ),
-        ));
+        ),
+      ),
+    );
   }
 }

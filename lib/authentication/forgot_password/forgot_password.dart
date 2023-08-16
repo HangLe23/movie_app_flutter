@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app_flutter/widget/button.dart';
@@ -21,34 +22,41 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       backgroundColor: CustomColors.backgroudcolor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(
-          child: Text(
-            'THE MOVIE',
-            style: TextStyles.titleTheMovie,
-          ),
+        toolbarHeight: 300,
+        flexibleSpace: Column(
+          children: [
+            const SizedBox(height: 40),
+            Text('THE MOVIE', style: TextStyles.titleTheMovie),
+            Image.asset('assets/images/themovie_app_icon.png', height: 200),
+            Text('Forgot Password', style: TextStyles.titleAuthen)
+          ],
         ),
         backgroundColor: Colors.transparent, // Xóa màu nền của AppBar
         elevation: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(30),
-        child: Column(
-          children: [
-            Image.asset('assets/images/themovie_app_icon.png', height: 200),
-            Text('Forgot Password', style: TextStyles.titleAuthen),
-            const SizedBox(height: 100),
-            TextFieldWidget(
+        child: Center(
+          child: Column(
+            children: [
+              TextFieldWidget(
                 textedit: email,
                 hint: 'Enter your email',
-                color: Colors.white30),
-            const SizedBox(height: 20),
-            ButtonWidget(
-                function: () {
-                  FirebaseAuth.instance
-                      .sendPasswordResetEmail(email: email.text);
+                validator: (value) {
+                  return value != null && !EmailValidator.validate(value)
+                      ? 'Enter a valid email'
+                      : null;
                 },
-                text: 'Send email')
-          ],
+              ),
+              const SizedBox(height: 20),
+              ButtonWidget(
+                  function: () {
+                    FirebaseAuth.instance
+                        .sendPasswordResetEmail(email: email.text);
+                  },
+                  text: 'Send email')
+            ],
+          ),
         ),
       ),
     );

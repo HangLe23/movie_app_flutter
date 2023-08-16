@@ -2,17 +2,17 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:the_movie/screens/authentication/forgot_password.dart';
-import 'package:the_movie/screens/authentication/register/register.dart';
-import 'package:the_movie/screens/main/main_app.dart';
-import 'package:the_movie/widget/textfields.dart';
 
-import '../../../blocs/authentication/authen_bloc.dart';
-import '../../../untils/Colors/colors.dart';
-import '../../../untils/TextStyles/TextStyles.dart';
-import '../../../widget/button.dart';
-import '../../../widget/buttonService.dart';
-import '../../../widget/divider.dart';
+import '../../screen/main/mainapp.dart';
+import '../../untils/Colors/colors.dart';
+import '../../untils/TextStyles/TextStyles.dart';
+import '../../widget/button.dart';
+import '../../widget/buttonService.dart';
+import '../../widget/divider.dart';
+import '../../widget/textfields.dart';
+import '../bloc/auth_bloc.dart';
+import '../forgot_password/forgot_password.dart';
+import '../register/register.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -27,7 +27,7 @@ class _LoginBodyState extends State<LoginBody> {
   final pass = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthenBloc, AuthenState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is Authenticated) {
           Navigator.pushReplacement(
@@ -41,24 +41,20 @@ class _LoginBodyState extends State<LoginBody> {
               .showSnackBar(SnackBar(content: Text(state.error)));
         }
       },
-      child: BlocBuilder<AuthenBloc, AuthenState>(
+      child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is Loading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           }
-          if (state is AuthenInitial) {
+          if (state is AuthInitial || state is Authenticated) {
             return SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               reverse: true,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/themovie_app_icon.png',
-                      height: 200),
-                  Text('Login', style: TextStyles.titleAuthen),
-                  const SizedBox(height: 20),
                   TextFieldWidget(
                     validator: (value) {
                       return value != null && !EmailValidator.validate(value)
@@ -68,9 +64,7 @@ class _LoginBodyState extends State<LoginBody> {
                     hint: 'Enter your email',
                     textedit: email,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   TextFieldWidget(
                     hint: 'Enter your password',
                     textedit: pass,
@@ -86,7 +80,7 @@ class _LoginBodyState extends State<LoginBody> {
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ForgotPassWord()));
+                              builder: (context) => const ForgotPassword()));
                         },
                         child: Text(
                           'Forgot password?',
@@ -98,24 +92,22 @@ class _LoginBodyState extends State<LoginBody> {
                   ButtonWidget(
                     text: 'Sign in',
                     function: () {
-                      if (key.currentState!.validate()) {
-                        BlocProvider.of<AuthenBloc>(context).add(
-                          SignIn(email.text, pass.text),
-                        );
-                        Navigator.push(
+                      //if (key.currentState!.validate()) {
+                      BlocProvider.of<AuthBloc>(context)
+                          .add(SignIn(email.text, pass.text));
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  MainApp(FirebaseAuth.instance.currentUser!)),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Invalid'),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      }
+                                  MainApp(FirebaseAuth.instance.currentUser!)));
+                      // } else {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text('Invalid'),
+                      //       backgroundColor: Colors.red,
+                      //     ),
+                      //   );
+                      // }
                     },
                   ),
                   Row(
@@ -138,7 +130,7 @@ class _LoginBodyState extends State<LoginBody> {
                   ),
                   AuthenService(
                       function: () {
-                        BlocProvider.of<AuthenBloc>(context).add(
+                        BlocProvider.of<AuthBloc>(context).add(
                           GoogleSignIn(),
                         );
                       },
@@ -161,10 +153,10 @@ class _LoginBodyState extends State<LoginBody> {
                   Row(
                     children: [
                       const SizedBox(
-                        width: 50,
+                        width: 20,
                       ),
                       Text(
-                        'You have an account?',
+                        'You donot have an account?',
                         style: TextStyles.lato400Size20,
                       ),
                       const Spacer(),
@@ -175,12 +167,9 @@ class _LoginBodyState extends State<LoginBody> {
                           ));
                         },
                         child: Text(
-                          'Sign In',
+                          'Sign Up',
                           style: TextStyles.signup,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 40,
                       )
                     ],
                   )

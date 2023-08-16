@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app_flutter/authentication/authen_service.dart';
 import 'package:movie_app_flutter/authentication/bloc/auth_bloc.dart';
+import 'package:movie_app_flutter/authentication/login/login.dart';
 import 'package:movie_app_flutter/screen/profile/bloc/profile_bloc.dart';
 import 'package:movie_app_flutter/widget/button.dart';
 import 'package:movie_app_flutter/widget/textfields.dart';
@@ -46,12 +48,15 @@ class _UserScreenState extends State<UserScreen> {
             ),
             const Spacer(),
             BlocProvider(
-              create: (context) => AuthBloc(),
+              create: (context) => AuthBloc(AuthenServiceOnTap()),
               child: BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) {
                   return TextButton(
                     onPressed: () {
-                      context.read<AuthBloc>().add(SignOut(context: context));
+                      context.read<AuthBloc>().add(SignOut());
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ));
                     },
                     child: Text(
                       'Logout',
@@ -90,14 +95,24 @@ class _UserScreenState extends State<UserScreen> {
                     ]),
                     const SizedBox(height: 5),
                     TextFieldWidget(
-                        textedit: name, hint: '', color: Colors.white30),
+                      textedit: name,
+                      hint: '',
+                      validator: (value) {
+                        return null;
+                      },
+                    ),
                     const SizedBox(height: 20),
                     Row(children: [
                       Text('Email', style: TextStyles.lato400Size20)
                     ]),
                     const SizedBox(height: 5),
                     TextFieldWidget(
-                        textedit: email, hint: '', color: Colors.white30),
+                      textedit: email,
+                      hint: '',
+                      validator: (value) {
+                        return null;
+                      },
+                    ),
                     const SizedBox(height: 20),
                     ButtonWidget(
                       function: () {

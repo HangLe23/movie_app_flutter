@@ -25,7 +25,7 @@ class TopRateItem extends StatelessWidget {
             child: Image.asset(imgURL),
           ),
           Positioned(
-              left: 23,
+              left: 20,
               bottom: 10,
               child: CardWidget(
                   color: Colors.white30,
@@ -35,7 +35,7 @@ class TopRateItem extends StatelessWidget {
                     style: TextStyles.lato400Size19,
                   )),
                   radius: 24,
-                  width: 270,
+                  width: MediaQuery.of(context).size.width * 0.25,
                   height: 90)),
           Positioned(
               top: 15,

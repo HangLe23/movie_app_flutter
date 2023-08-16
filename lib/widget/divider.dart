@@ -14,7 +14,7 @@ class DividerWidget extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.all(10),
       color: color,
     );
   }

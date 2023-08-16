@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_flutter/screen/profile/profilescreen.dart';
@@ -8,7 +9,8 @@ import '../home/homescreen.dart';
 import 'bloc/main_bloc.dart';
 
 class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+  final User user;
+  const MainApp(this.user, {super.key});
 
   @override
   State<MainApp> createState() => _MainAppState();
