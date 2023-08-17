@@ -95,6 +95,6 @@ class TextStyles {
   static TextStyle bluetext = TextStyle(
       fontFamily: 'lato',
       fontWeight: FontWeight.w400,
-      fontSize: 16,
+      fontSize: 18,
       color: CustomColors.bluetext);
 }

@@ -35,8 +35,8 @@ class TopRateItem extends StatelessWidget {
                     style: TextStyles.lato400Size19,
                   )),
                   radius: 24,
-                  width: MediaQuery.of(context).size.width * 0.25,
-                  height: 90)),
+                  width: MediaQuery.of(context).size.width * 0.67,
+                  height: MediaQuery.of(context).size.height * 0.09)),
           Positioned(
               top: 15,
               right: 15,
@@ -44,36 +44,22 @@ class TopRateItem extends StatelessWidget {
                   color: Colors.white30,
                   widget: Column(
                     children: [
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'IMDb',
-                        style: TextStyles.IMDb,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 5),
+                      Text('IMDb', style: TextStyles.IMDb),
+                      const SizedBox(height: 5),
                       Row(
                         children: [
-                          const SizedBox(
-                            width: 15,
-                          ),
+                          const SizedBox(width: 15),
                           CustomIcons.star,
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            '7.0',
-                            style: TextStyles.lato400Size19,
-                          )
+                          const SizedBox(width: 5),
+                          Text('7.0', style: TextStyles.lato400Size19)
                         ],
                       )
                     ],
                   ),
                   radius: 18,
-                  width: 90,
-                  height: 55))
+                  width: MediaQuery.of(context).size.width * 0.22,
+                  height: MediaQuery.of(context).size.height * 0.055))
         ],
       ),
     );
