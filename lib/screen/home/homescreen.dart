@@ -1,5 +1,8 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/mock_data/mock_data.dart';
+import 'package:movie_app_flutter/api_server/top_rated_api.dart';
+import 'package:movie_app_flutter/items/top_rate_item.dart';
+import 'package:movie_app_flutter/screen/detail/detail.dart';
 import 'package:movie_app_flutter/untils/Colors/colors.dart';
 import 'package:movie_app_flutter/untils/Icons/icon_play.dart';
 import 'package:movie_app_flutter/widget/cards.dart';
@@ -74,19 +77,42 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyles.tittle,
             ),
           ),
-          Expanded(
-              child: ListView.separated(
-                  padding: const EdgeInsets.all(20),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                        height: 230, child: MockData().topRateImages[index]);
-                  },
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(
-                        width: 15,
-                      ),
-                  itemCount: MockData().topRateImages.length))
+          FutureBuilder(
+              future: TopRatedAPI().getTopRates(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  return Expanded(
+                    child: CarouselSlider.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index, page) {
+                        return TopRateItem(
+                          imgURL: snapshot.data?[index].posterPath ?? '',
+                          name: snapshot.data?[index].title ?? '',
+                          imdb: snapshot.data![index].voteAverage?.toDouble() ??
+                              0,
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => DetailScreen(
+                                topRated: snapshot.data![index],
+                              ),
+                            ));
+                          },
+                        );
+                      },
+                      options: CarouselOptions(
+                          enlargeCenterPage: true,
+                          height: 500,
+                          viewportFraction: 0.7),
+                    ),
+                  );
+                } else {
+                  return const Text('No data available');
+                }
+              })
         ],
       ),
     );

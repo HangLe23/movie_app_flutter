@@ -2,28 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../items/cast_drew_item.dart';
 import '../items/movie_item.dart';
-import '../items/top_rate_item.dart';
 import '../untils/TextStyles/TextStyles.dart';
 
 class MockData {
-  List<TopRateItem> topRateImages = [
-    const TopRateItem(
-      imgURL: 'assets/images/TheLastJedi.png',
-      name: 'Star Wars: The Last Jedi',
-    ),
-    const TopRateItem(
-      imgURL: 'assets/images/TheLastJedi.png',
-      name: 'Star Wars: The Last Jedi',
-    ),
-    const TopRateItem(
-      imgURL: 'assets/images/TheLastJedi.png',
-      name: 'Star Wars: The Last Jedi',
-    ),
-    const TopRateItem(
-      imgURL: 'assets/images/TheLastJedi.png',
-      name: 'Star Wars: The Last Jedi',
-    ),
-  ];
   List<MovieItem> movieItems = [
     const MovieItem(
       imageUrl: 'assets/images/Soul.png',

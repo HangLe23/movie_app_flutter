@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app_flutter/models/top_rate.dart';
 import 'package:movie_app_flutter/screen/detail/bloc/detail_bloc.dart';
 import 'package:movie_app_flutter/untils/Icons/icons.dart';
 import 'package:movie_app_flutter/widget/cards.dart';
@@ -9,14 +10,10 @@ import '../../untils/Colors/colors.dart';
 import '../../untils/Icons/icon_play.dart';
 import '../../untils/TextStyles/TextStyles.dart';
 
-class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+class DetailScreen extends StatelessWidget {
+  final TopRated topRated;
+  const DetailScreen({super.key, required this.topRated});
 
-  @override
-  State<DetailScreen> createState() => _DetailScreenState();
-}
-
-class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +21,7 @@ class _DetailScreenState extends State<DetailScreen> {
       body: Column(children: [
         Stack(
           children: [
-            Image.asset(
+            Image.network(
               'assets/images/banner_detail.png',
             ),
             Positioned(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../screen/detail/detail.dart';
 import '../untils/TextStyles/TextStyles.dart';
 
 class MovieItem extends StatelessWidget {
@@ -16,11 +15,7 @@ class MovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const DetailScreen(),
-          ));
-        },
+        onTap: () {},
         child: Column(
           children: [
             ClipRRect(
