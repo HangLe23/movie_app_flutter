@@ -39,7 +39,7 @@ class TextStyles {
   static TextStyle lato500Size28 = TextStyle(
       fontFamily: 'Lato',
       fontWeight: FontWeight.w500,
-      fontSize: 28.91,
+      fontSize: 25,
       color: CustomColors.textColor);
   static TextStyle lato500Size24 = TextStyle(
       fontFamily: 'Lato',

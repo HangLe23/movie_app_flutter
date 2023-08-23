@@ -20,13 +20,10 @@ class MovieItem extends StatelessWidget {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(24),
-                child: Image.asset(imageUrl)),
+                child: Image.network(imageUrl)),
             const SizedBox(height: 15),
-            Text(
-              name,
-              style: TextStyles.lato400Size14,
-              textAlign: TextAlign.left,
-            ),
+            Text(name,
+                style: TextStyles.lato400Size14, textAlign: TextAlign.center),
           ],
         ));
   }
