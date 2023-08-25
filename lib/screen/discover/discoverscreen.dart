@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app_flutter/mock_data/mock_data.dart';
 import 'package:movie_app_flutter/screen/discover/documentary/documentary_screen.dart';
 import 'package:movie_app_flutter/screen/discover/movies/movies_screen.dart';
 import 'package:movie_app_flutter/screen/discover/sports/sport_screen.dart';
@@ -58,7 +57,12 @@ class DiscoverScreen extends StatelessWidget {
                     labelColor: CustomColors.gradientbg,
                     unselectedLabelColor: CustomColors.lineWhite,
                     indicatorColor: CustomColors.gradientbg,
-                    tabs: MockData().tabs,
+                    tabs: [
+                      Text('Movies', style: TextStyles.tab),
+                      Text('TV series', style: TextStyles.tab),
+                      Text('Documentary', style: TextStyles.tab),
+                      Text('Sports', style: TextStyles.tab),
+                    ],
                     onTap: (value) {
                       BlocProvider.of<DiscoverBloc>(context)
                           .add(TabChange(index: value));

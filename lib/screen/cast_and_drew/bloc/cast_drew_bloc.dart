@@ -6,8 +6,6 @@ part 'cast_drew_state.dart';
 
 class CastDrewBloc extends Bloc<CastDrewEvent, CastDrewState> {
   CastDrewBloc() : super(CastDrewInitial()) {
-    on<CastDrewEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<CastDrewEvent>((event, emit) {});
   }
 }

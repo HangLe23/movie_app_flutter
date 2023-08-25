@@ -5,5 +5,6 @@ abstract class DetailEvent {}
 
 class SwitchScreen extends DetailEvent {
   final BuildContext context;
-  SwitchScreen({required this.context});
+  final CastCrew castCrew;
+  SwitchScreen(this.castCrew, {required this.context});
 }
