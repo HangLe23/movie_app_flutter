@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_flutter/components/index.dart';
 
 import '../untils/TextStyles/TextStyles.dart';
 
@@ -23,7 +24,9 @@ class MovieItem extends StatelessWidget {
         child: Column(children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(24),
-              child: Image.network(imageUrl)),
+              child: InternetImage(
+                imageUrl: imageUrl,
+              )),
           const SizedBox(height: 15),
           Text('$name ($year)',
               style: TextStyles.lato400Size14, textAlign: TextAlign.left),

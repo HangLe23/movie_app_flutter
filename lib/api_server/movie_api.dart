@@ -8,10 +8,10 @@ import 'package:movie_app_flutter/models/movie.dart';
 
 class MovieAPI {
   static const movieURL =
-      '${API.baseUrl}/trending/movie/day?api_key=${API.api}';
+      '${AppConstants.baseUrl}/trending/movie/day?AppConstants_key=${AppConstants.api}';
 
   static const topratedUrl =
-      '${API.baseUrl}/movie/top_rated?api_key=${API.api}';
+      '${AppConstants.baseUrl}/movie/top_rated?AppConstants_key=${AppConstants.api}';
 
   Future<List<Movies>> getMovies() async {
     final response = await http.get(Uri.parse(movieURL));
@@ -19,7 +19,7 @@ class MovieAPI {
       final decodedData = json.decode(response.body)['results'] as List;
       final moviesList = decodedData.map<Movies>((json) {
         final posterPath = json['poster_path'] as String?;
-        final imageUrl = '${API.imgPath}$posterPath';
+        final imageUrl = '${AppConstants.imgPath}$posterPath';
         return Movies.fromJson(json)..posterPath = imageUrl;
       }).toList();
       return moviesList;
@@ -29,8 +29,8 @@ class MovieAPI {
   }
 
   Future<Detail> fetchMovieDetails(int id) async {
-    final response = await http
-        .get(Uri.parse('${API.baseUrl}/movie/$id?api_key=${API.api}'));
+    final response = await http.get(Uri.parse(
+        '${AppConstants.baseUrl}/movie/$id?AppConstants_key=${AppConstants.api}'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       return Detail.fromJson(data);
@@ -45,7 +45,7 @@ class MovieAPI {
       final decodedData = json.decode(response.body)['results'] as List;
       final topRatedList = decodedData.map<Movies>((json) {
         final posterPath = json['poster_path'] as String?;
-        final imageUrl = '${API.imgPath}$posterPath';
+        final imageUrl = '${AppConstants.imgPath}$posterPath';
         return Movies.fromJson(json)..posterPath = imageUrl;
       }).toList();
       return topRatedList;
@@ -56,8 +56,8 @@ class MovieAPI {
 
   Future<List<CastCrew>> getCastCrew(int id) async {
     try {
-      final response = await http
-          .get(Uri.parse('${API.baseUrl}/movie/$id/casts?api_key=${API.api}'));
+      final response = await http.get(Uri.parse(
+          '${AppConstants.baseUrl}/movie/$id/casts?AppConstants_key=${AppConstants.api}'));
 
       if (response.statusCode == 200) {
         final decodedData = json.decode(response.body)['cast'] as List;
@@ -65,20 +65,20 @@ class MovieAPI {
 
         final castList = decodedData.map<Cast>((json) {
           final profilePath = json['profile_path'] as String?;
-          final imageUrl = '${API.imgPath}$profilePath';
+          final imageUrl = '${AppConstants.imgPath}$profilePath';
           return Cast.fromJson(json)..profilePath = imageUrl;
         }).toList();
 
         final crewList = decodedCrewData.map<Crew>((json) {
           final profilePath = json['profile_path'] as String?;
-          final imageUrl = '${API.imgPath}$profilePath';
+          final imageUrl = '${AppConstants.imgPath}$profilePath';
           return Crew.fromJson(json)..profilePath = imageUrl;
         }).toList();
 
         return [CastCrew(cast: castList, crew: crewList)];
       } else {
         throw Exception(
-            'API request failed with status code: ${response.statusCode}');
+            'AppConstants request failed with status code: ${response.statusCode}');
       }
     } catch (error) {
       //print('Error fetching cast and crew: $error');
@@ -87,8 +87,8 @@ class MovieAPI {
   }
 
   Future<CastCrew> fetchCastCrew(int id) async {
-    final response = await http
-        .get(Uri.parse('${API.baseUrl}/movie/$id/casts?api_key=${API.api}'));
+    final response = await http.get(Uri.parse(
+        '${AppConstants.baseUrl}/movie/$id/casts?AppConstants_key=${AppConstants.api}'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       return CastCrew.fromJson(data);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_flutter/components/catch_images/image_internet.dart';
 import 'package:movie_app_flutter/untils/Icons/icons.dart';
 import 'package:movie_app_flutter/widget/cards.dart';
 
@@ -23,17 +24,20 @@ class TopRateItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(36),
-            child: Image.network(imgURL),
+            child: InternetImage(
+              imageUrl: imgURL,
+            ),
           ),
           Positioned(
               left: MediaQuery.of(context).size.width * 0.05,
-              bottom: 30,
+              bottom: 20,
               child: CardWidget(
                   color: Colors.white30,
                   widget: Center(
                       child: Text(
                     name,
                     style: TextStyles.lato400Size19,
+                    textAlign: TextAlign.center,
                   )),
                   radius: 24,
                   width: MediaQuery.of(context).size.width * 0.6,

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app_flutter/api_server/api.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'default_avatar_widgets.dart';
@@ -24,12 +25,12 @@ class InternetImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Uri.parse(imageUrl).isAbsolute) {
+    if (Uri.parse('${AppConstants.imgPath}$imageUrl').isAbsolute) {
       return CachedNetworkImage(
         httpHeaders: const {
           'Access-Control-Allow-Origin': '*',
         },
-        imageUrl: imageUrl,
+        imageUrl: '${AppConstants.imgPath}$imageUrl',
         width: width,
         height: height,
         fit: fit,
