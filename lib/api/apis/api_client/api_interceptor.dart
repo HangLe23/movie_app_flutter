@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 
 class APIInterceptor extends QueuedInterceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     // if (accessToken != null) {
     //   if (JwtDecoder.isExpired(accessToken)) {
     //     try {
@@ -46,7 +45,7 @@ class APIInterceptor extends QueuedInterceptor {
     // }
 
     super.onRequest(options, handler);
-    log('[${options.method}] ${options.path}');
+    //log('[${options.method}] ${options.path}');
   }
 
   @override

@@ -1,12 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app_flutter/screen/discover/discoverscreen.dart';
+import 'package:movie_app_flutter/screen/home/home_index.dart';
+import 'package:movie_app_flutter/screen/main/main_index.dart';
 import 'package:movie_app_flutter/screen/profile/profilescreen.dart';
-
-import '../../untils/Colors/colors.dart';
-import '../discover/discoverscreen.dart';
-import '../home/homescreen.dart';
-import 'bloc/main_bloc.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
 
 class MainApp extends StatefulWidget {
   final User user;

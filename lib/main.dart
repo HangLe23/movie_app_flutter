@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_flutter/authentication/authen_service.dart';
 import 'package:movie_app_flutter/authentication/bloc/auth_bloc.dart';
-import 'package:movie_app_flutter/authentication/login/login.dart';
-import 'package:movie_app_flutter/screen/main/mainapp.dart';
+
+import 'authentication/login/login.dart';
+import 'screen/main/mainapp.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

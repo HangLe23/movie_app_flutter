@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:movie_app_flutter/api/apis/api_client/response_model.dart';
-
-import '../../../api/rest_api/rest_api_client.dart';
-import '../../../models/movie_models/movie_model.dart';
-import '../../../responsitories/movie_reponsitories/movie_reponsitory.dart';
+import 'package:movie_app_flutter/api/rest_api/rest_api_client.dart';
+import 'package:movie_app_flutter/models/movie_models/movie_model.dart';
+import 'package:movie_app_flutter/responsitories/movie_reponsitories/movie_reponsitory.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -18,9 +17,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<GetTopRate>(onGetData);
   }
 
-  Future<void> onGetData(GetTopRate event, Emitter<HomeState> emit) async {
+  FutureOr<void> onGetData(GetTopRate event, Emitter<HomeState> emit) async {
+    emit(LoadHome());
     try {
-      var movies = await reponsitory.getTopRate(
+      var movies = await reponsitory.getTopRateMovie(
         language: event.language,
         page: event.page,
         region: event.region,

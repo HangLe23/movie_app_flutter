@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/api_server/movie_api.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app_flutter/api/rest_api/rest_api_client.dart';
+import 'package:movie_app_flutter/responsitories/detail_reponsitories/detail_reponsitory.dart';
 import 'package:movie_app_flutter/screen/detail/detail_screen.dart';
-
-import '../../../items/movie_item.dart';
+import 'package:movie_app_flutter/screen/discover/movies/bloc/movie_bloc.dart';
+import 'package:movie_app_flutter/widget/items/movie_item.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({super.key});
@@ -14,44 +16,54 @@ class MovieScreen extends StatefulWidget {
 class _MovieScreenState extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: MovieAPI().getMovies(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasData) {
-            return GridView.builder(
-              padding: const EdgeInsets.all(20),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10.0,
-                childAspectRatio: 0.55,
-              ),
-              itemCount: snapshot.data!.length,
-              itemBuilder: (BuildContext context, int index) {
-                return MovieItem(
-                    imageUrl: snapshot.data?[index].posterPath ?? '',
-                    name: snapshot.data?[index].title ?? '',
-                    onTap: () {
-                      navigateToDetailScreen(
-                          context, snapshot.data?[index].id ?? 0);
-                    },
-                    year: snapshot.data![index].releaseDate?.substring(0, 4) ??
-                        '');
-              },
-            );
-          } else {
-            return const Center(child: Text('No data available'));
+    return BlocProvider(
+      create: (context) =>
+          MovieBloc()..add(GetMovie(language: 'en-US', page: 1, region: '')),
+      child: BlocBuilder<MovieBloc, MovieState>(
+        builder: (context, state) {
+          switch (state.runtimeType) {
+            case MovieInitial:
+              return const Center(child: Text('Initial State'));
+            case MovieError:
+              return const SnackBar(
+                  content: Text('No Data'), backgroundColor: Colors.red);
+            case LoadMovie:
+              return const Center(child: CircularProgressIndicator());
+            case ListMovie:
+              return GridView.builder(
+                padding: const EdgeInsets.all(20),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10.0,
+                  childAspectRatio: 0.54,
+                ),
+                itemCount: state.movies?.list.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return MovieItem(
+                      imageUrl: state.movies?.list[index].posterPath ?? '',
+                      name: state.movies?.list[index].title ?? '',
+                      onTap: () async {
+                        final detail = await DetailReponsitory(
+                                restApiClient: RestApiClient())
+                            .getDetail(
+                                movieId: state.movies?.list[index].id ?? 0,
+                                language: 'en-US');
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(detail: detail),
+                          ),
+                        );
+                      },
+                      year: state.movies?.list[index].releaseDate
+                              ?.substring(0, 4) ??
+                          '');
+                },
+              );
+            default:
           }
-        });
+          return const Center(child: Text('data'));
+        },
+      ),
+    );
   }
-}
-
-void navigateToDetailScreen(BuildContext context, int movieId) async {
-  final detail = await MovieAPI().fetchMovieDetails(movieId);
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => DetailScreen(detail: detail),
-    ),
-  );
 }

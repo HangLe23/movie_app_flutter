@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:movie_app_flutter/api/apis/api_client/api_interceptor.dart';
+import 'package:movie_app_flutter/api/apis/api_client/constants.dart';
 import 'package:movie_app_flutter/api/apis/api_client/index.dart';
-import 'package:movie_app_flutter/api_server/api.dart';
 
 class RestApiClient extends APIClient {
   static final RestApiClient _instance = RestApiClient._();

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/api_server/api.dart';
+import 'package:movie_app_flutter/api/apis/api_client/constants.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'default_avatar_widgets.dart';

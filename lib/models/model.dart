@@ -1,5 +1,4 @@
-export 'base_models/genre.dart';
-export 'base_models/media_genre.dart';
-export 'base_models/multiple_details.dart';
-export 'base_models/multiple_media.dart';
-export 'cast_crew.dart';
+export 'base_models/base_model.dart';
+export 'cast_crew/cast_crew.dart';
+export 'detail/detail.dart';
+export 'movie_models/movie_model.dart';

@@ -3,8 +3,8 @@ part of 'detail_bloc.dart';
 @immutable
 abstract class DetailEvent {}
 
-class SwitchScreen extends DetailEvent {
-  final BuildContext context;
-  final CastCrew castCrew;
-  SwitchScreen(this.castCrew, {required this.context});
+class GetDataDetail extends DetailEvent {
+  final String language;
+  final int movieId;
+  GetDataDetail({required this.language, required this.movieId});
 }

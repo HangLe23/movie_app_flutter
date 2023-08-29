@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/components/catch_images/image_internet.dart';
-import 'package:movie_app_flutter/untils/Icons/icons.dart';
-import 'package:movie_app_flutter/widget/cards.dart';
-
-import '../untils/TextStyles/TextStyles.dart';
+import 'package:movie_app_flutter/components/index.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
+import 'package:movie_app_flutter/widget/widget.dart';
 
 class TopRateItem extends StatelessWidget {
   final String imgURL;

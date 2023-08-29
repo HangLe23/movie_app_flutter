@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app_flutter/screen/discover/documentary/documentary_screen.dart';
-import 'package:movie_app_flutter/screen/discover/movies/movies_screen.dart';
-import 'package:movie_app_flutter/screen/discover/sports/sport_screen.dart';
-import 'package:movie_app_flutter/screen/discover/tv%20series/tvSeries_screen.dart';
-import 'package:movie_app_flutter/untils/TextStyles/TextStyles.dart';
-
-import '../../untils/Colors/colors.dart';
-import '../../widget/searchWidget.dart';
-import 'bloc/discover_bloc.dart';
+import 'package:movie_app_flutter/screen/discover/discover_index.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
+import 'package:movie_app_flutter/widget/widget.dart';
 
 class DiscoverScreen extends StatelessWidget {
   const DiscoverScreen({Key? key}) : super(key: key);
@@ -52,6 +46,7 @@ class DiscoverScreen extends StatelessWidget {
               length: 4,
               child: Column(
                 children: [
+                  const SizedBox(height: 10),
                   TabBar(
                     isScrollable: true,
                     labelColor: CustomColors.gradientbg,

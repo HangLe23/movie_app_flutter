@@ -1,14 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app_flutter/components/index.dart';
-import 'package:movie_app_flutter/items/top_rate_item.dart';
-import 'package:movie_app_flutter/screen/home/bloc/home_bloc.dart';
-import 'package:movie_app_flutter/untils/Colors/colors.dart';
-import 'package:movie_app_flutter/untils/Icons/icon_play.dart';
-import 'package:movie_app_flutter/widget/cards.dart';
-
-import '../../untils/TextStyles/TextStyles.dart';
+import 'package:movie_app_flutter/api/rest_api/rest_api_client.dart';
+import 'package:movie_app_flutter/responsitories/repository.dart';
+import 'package:movie_app_flutter/screen/detail/detail_index.dart';
+import 'package:movie_app_flutter/screen/home/home_index.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,38 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               case HomeError:
                 return const SnackBar(
-                    content: Text('Invalid'), backgroundColor: Colors.red);
+                    content: Text('No Data'), backgroundColor: Colors.red);
+              case LoadHome:
+                return const Center(child: CircularProgressIndicator());
               case ListTopRate:
                 return Column(children: [
-                  Stack(children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(36),
-                      child: InternetImage(
-                        imageUrl: state.movies?.list[0].backdropPath ?? '',
-                        width: 395,
-                        height: 230,
-                      ),
-                    ),
-                    Positioned(
-                        left: 15,
-                        bottom: 20,
-                        child: CardWidget(
-                            color: Colors.white30,
-                            widget: Row(
-                              children: [
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                IconPlay(onTap: () {}),
-                                const SizedBox(width: 20),
-                                Text('Offical trailer',
-                                    style: TextStyles.lato400Size19)
-                              ],
-                            ),
-                            radius: 24,
-                            width: 255,
-                            height: 75))
-                  ]),
+                  BannerHome(imgUrl: state.movies?.list[0].backdropPath ?? ''),
                   const SizedBox(height: 10),
                   SizedBox(
                       width: 350,
@@ -87,9 +58,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           imdb: state.movies?.list[index].voteAverage
                                   ?.toDouble() ??
                               0,
-                          onTap: () {
-                            // navigateToDetailScreen(
-                            //     context, state.movies?.list[index].id ?? 0);
+                          onTap: () async {
+                            final detail = await DetailReponsitory(
+                                    restApiClient: RestApiClient())
+                                .getDetail(
+                                    movieId: state.movies?.list[index].id ?? 0,
+                                    language: 'en-US');
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailScreen(detail: detail),
+                              ),
+                            );
                           },
                         );
                       },
@@ -111,12 +91,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-// void navigateToDetailScreen(BuildContext context, int movieId) async {
-//   final detail = await MovieAPI().fetchMovieDetails(movieId);
-//   Navigator.of(context).push(
-//     MaterialPageRoute(
-//       builder: (context) => DetailScreen(detail: detail),
-//     ),
-//   );
-// }
