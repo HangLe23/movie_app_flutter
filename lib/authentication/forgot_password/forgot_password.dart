@@ -1,11 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app_flutter/widget/button.dart';
-import 'package:movie_app_flutter/widget/textfields.dart';
-
-import '../../untils/Colors/colors.dart';
-import '../../untils/TextStyles/TextStyles.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
+import 'package:movie_app_flutter/widget/widget.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});

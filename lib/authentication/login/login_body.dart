@@ -1,17 +1,12 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../screen/main/mainapp.dart';
-import '../../untils/Colors/colors.dart';
-import '../../untils/TextStyles/TextStyles.dart';
-import '../../widget/button.dart';
-import '../../widget/buttonService.dart';
-import '../../widget/divider.dart';
-import '../../widget/textfields.dart';
-import '../bloc/auth_bloc.dart';
-import '../forgot_password/forgot_password.dart';
-import '../register/register.dart';
+import 'package:movie_app_flutter/authentication/bloc/auth_bloc.dart';
+import 'package:movie_app_flutter/authentication/forgot_password/forgot_password.dart';
+import 'package:movie_app_flutter/authentication/register/register.dart';
+import 'package:movie_app_flutter/screen/main/main_index.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
+import 'package:movie_app_flutter/widget/widget.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});

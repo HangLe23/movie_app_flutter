@@ -23,7 +23,7 @@ class MovieReponsitory {
       {required String language,
       required int page,
       required String region}) async {
-    return MovieService(apiClient: restApiClient).getNowPlayingMovie(
+    return MovieService(apiClient: restApiClient).getPopularMovie(
       language: language,
       page: page,
       region: region,

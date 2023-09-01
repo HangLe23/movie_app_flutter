@@ -1,5 +1,4 @@
-import 'package:movie_app_flutter/api/apis/api_client/api_request.dart';
-import 'package:movie_app_flutter/api/apis/api_client/http_method.dart';
+import 'package:movie_app_flutter/api/apis/api.dart';
 
 class MovieRequest {
   MovieRequest._();

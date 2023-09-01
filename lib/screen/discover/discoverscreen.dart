@@ -67,7 +67,7 @@ class DiscoverScreen extends StatelessWidget {
                     child: TabBarView(
                       children: [
                         MovieScreen(),
-                        TVSeriesScreen(),
+                        TvSeriesScreen(),
                         DocumentaryScreen(),
                         SportScreen()
                       ],

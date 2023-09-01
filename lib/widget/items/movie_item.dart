@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_flutter/components/index.dart';
-
-import '../../untils/TextStyles/TextStyles.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
 
 class MovieItem extends StatelessWidget {
   final String imageUrl;
@@ -23,13 +22,19 @@ class MovieItem extends StatelessWidget {
       onTap: onTap,
       child: Column(children: [
         ClipRRect(
-            borderRadius: BorderRadius.circular(24),
-            child: InternetImage(
-              imageUrl: imageUrl,
-            )),
+          borderRadius: BorderRadius.circular(24),
+          child: imageUrl.isEmpty || imageUrl == 'null'
+              ? SizedBox(
+                  height: 270,
+                  child: Image.asset('assets/images/themovie_app_icon.png'))
+              : InternetImage(imageUrl: imageUrl),
+        ),
         const SizedBox(height: 10),
-        Text('$name ($year)',
-            style: TextStyles.lato400Size14, textAlign: TextAlign.left),
+        year.isEmpty || year == 'null' || year == ''
+            ? Text('$name (yyyy)',
+                style: TextStyles.lato400Size14, textAlign: TextAlign.left)
+            : Text('$name (${year.substring(0, 4)})',
+                style: TextStyles.lato400Size14, textAlign: TextAlign.left),
       ]),
     );
   }

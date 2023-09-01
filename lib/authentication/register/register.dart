@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_flutter/authentication/register/register_body.dart';
-import 'package:movie_app_flutter/untils/Colors/colors.dart';
-
-import '../../untils/TextStyles/TextStyles.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
 
 class Register extends StatelessWidget {
   const Register({super.key});

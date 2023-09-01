@@ -54,9 +54,7 @@ class _MovieScreenState extends State<MovieScreen> {
                           ),
                         );
                       },
-                      year: state.movies?.list[index].releaseDate
-                              ?.substring(0, 4) ??
-                          '');
+                      year: state.movies?.list[index].releaseDate ?? '');
                 },
               );
             default:

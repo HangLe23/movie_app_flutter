@@ -7,7 +7,7 @@ import 'package:movie_app_flutter/widget/items/item.dart';
 
 class ListCast extends StatefulWidget {
   final ObjectResponse<Detail> detail;
-  const ListCast({super.key, required this.detail});
+  const ListCast({Key? key, required this.detail}) : super(key: key);
 
   @override
   State<ListCast> createState() => _ListCastState();
@@ -27,16 +27,13 @@ class _ListCastState extends State<ListCast> {
             return Expanded(
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: state.casts?.object.cast?.length ?? 0,
                 padding: const EdgeInsets.only(left: 20),
                 itemBuilder: (BuildContext context, int index) {
                   final cast = state.casts?.object.cast?[index];
-                  return SizedBox(
-                    width: 150,
-                    height: 200,
-                    child: CastDrewItem(
-                        imageUrl: cast?.profilePath ?? '',
-                        name: cast?.name ?? ''),
+                  return CastDrewItem(
+                    imageUrl: cast?.profilePath ?? '',
+                    name: cast?.name ?? '',
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
@@ -46,8 +43,8 @@ class _ListCastState extends State<ListCast> {
             );
 
           default:
+            return Container();
         }
-        return Container();
       }),
     );
   }

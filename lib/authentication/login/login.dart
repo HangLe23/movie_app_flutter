@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_flutter/authentication/login/login_body.dart';
-import 'package:movie_app_flutter/untils/Colors/colors.dart';
-import 'package:movie_app_flutter/untils/TextStyles/TextStyles.dart';
+import 'package:movie_app_flutter/untils/untils.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
