@@ -19,13 +19,11 @@ class CastDrewItem extends StatelessWidget {
           child: imageUrl.isEmpty || imageUrl == 'null'
               ? Container(
                   color: Colors.white,
-                  width: 150,
-                  height: 225,
+                  height: 200,
                   child: Image.asset('assets/images/default.png'),
                 )
               : InternetImage(
                   imageUrl: imageUrl,
-                  width: 150,
                 ),
         ),
         const SizedBox(height: 10),

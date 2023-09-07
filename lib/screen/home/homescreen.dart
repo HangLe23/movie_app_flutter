@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () async {
                             final detail = await DetailReponsitory(
                                     restApiClient: RestApiClient())
-                                .getDetail(
+                                .getDetailMovie(
                                     movieId: state.movies?.list[index].id ?? 0,
                                     language: 'en-US');
                             Navigator.of(context).push(

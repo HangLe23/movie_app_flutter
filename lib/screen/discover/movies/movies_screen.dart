@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_flutter/api/rest_api/rest_api_client.dart';
 import 'package:movie_app_flutter/responsitories/detail_reponsitories/detail_reponsitory.dart';
-import 'package:movie_app_flutter/screen/detail/detail_screen.dart';
+import 'package:movie_app_flutter/screen/detail/movie_detail/detail_screen.dart';
 import 'package:movie_app_flutter/screen/discover/movies/bloc/movie_bloc.dart';
 import 'package:movie_app_flutter/widget/items/movie_item.dart';
 
@@ -45,7 +45,7 @@ class _MovieScreenState extends State<MovieScreen> {
                       onTap: () async {
                         final detail = await DetailReponsitory(
                                 restApiClient: RestApiClient())
-                            .getDetail(
+                            .getDetailMovie(
                                 movieId: state.movies?.list[index].id ?? 0,
                                 language: 'en-US');
                         Navigator.of(context).push(

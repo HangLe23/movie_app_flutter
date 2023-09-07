@@ -61,4 +61,16 @@ class TvSeriesRepository {
       timewindow: timewindow,
     );
   }
+
+  Future<ListResponse<TvSeriesModel>> getRecommendation({
+    required String language,
+    required int page,
+    required int tvId,
+  }) async {
+    return TvSeriesService(apiClient: restApiClient).getRecommendation(
+      language: language,
+      page: page,
+      tvId: tvId,
+    );
+  }
 }

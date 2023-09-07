@@ -67,4 +67,15 @@ class MovieReponsitory {
       region: region,
     );
   }
+
+  Future<ListResponse<MovieModel>> getRecommendation(
+      {required String language,
+      required int page,
+      required int movieId}) async {
+    return MovieService(apiClient: restApiClient).getRecommendation(
+      language: language,
+      page: page,
+      movieId: movieId,
+    );
+  }
 }

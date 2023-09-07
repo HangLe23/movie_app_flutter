@@ -25,9 +25,12 @@ class MovieItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           child: imageUrl.isEmpty || imageUrl == 'null'
               ? SizedBox(
-                  height: 270,
+                  height: 200,
+                  width: 150,
                   child: Image.asset('assets/images/themovie_app_icon.png'))
-              : InternetImage(imageUrl: imageUrl),
+              : InternetImage(
+                  imageUrl: imageUrl,
+                ),
         ),
         const SizedBox(height: 10),
         year.isEmpty || year == 'null' || year == ''

@@ -68,4 +68,15 @@ class TvSeriesRequest {
           'time_window': timewindow
         },
       );
+  static APIRequest getRecommendations(
+          {required String language, required int page, required int tvId}) =>
+      APIRequest(
+        method: HTTPMethods.get,
+        path: '/tv/$tvId/similar',
+        parameters: {
+          'language': language,
+          'page': page,
+          'series_id': tvId,
+        },
+      );
 }

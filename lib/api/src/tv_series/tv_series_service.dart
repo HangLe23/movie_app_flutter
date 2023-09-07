@@ -68,4 +68,22 @@ class TvSeriesService {
         .toList();
     return ListResponse(list: listResponse);
   }
+
+  Future<ListResponse<TvSeriesModel>> getRecommendation({
+    required int tvId,
+    required String language,
+    required int page,
+  }) async {
+    var request = TvSeriesRequest.getRecommendations(
+      language: language,
+      page: page,
+      tvId: tvId,
+    );
+    final response = await apiClient.execute(request: request);
+    final listResponse = response
+        .toList()
+        .map<TvSeriesModel>((e) => TvSeriesModel.fromJson(e))
+        .toList();
+    return ListResponse(list: listResponse);
+  }
 }

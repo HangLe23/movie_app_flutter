@@ -15,6 +15,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
       MovieReponsitory(restApiClient: RestApiClient());
   MovieBloc() : super(MovieInitial()) {
     on<GetMovie>(onGetData);
+    on<GetRecommendation>(onGetRecommendation);
   }
 
   Future<void> onGetData(GetMovie event, Emitter<MovieState> emit) async {
@@ -67,6 +68,21 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
         }
       }
       emit(ListMovie(movies: ListResponse<MovieModel>(list: movies)));
+    } catch (e) {
+      emit(MovieError(error: e.toString(), movies: null));
+    }
+  }
+
+  Future<FutureOr<void>> onGetRecommendation(
+      GetRecommendation event, Emitter<MovieState> emit) async {
+    emit(LoadMovie());
+    try {
+      var movies = await reponsitory.getRecommendation(
+        language: event.language,
+        page: event.page,
+        movieId: event.movieId,
+      );
+      emit(ListMovie(movies: movies));
     } catch (e) {
       emit(MovieError(error: e.toString(), movies: null));
     }

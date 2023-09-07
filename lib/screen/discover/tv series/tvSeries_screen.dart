@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_flutter/api/rest_api/rest_api_client.dart';
@@ -22,27 +20,6 @@ class _TvSeriesScreenState extends State<TvSeriesScreen> {
       create: (context) =>
           TvSeriesBloc()..add(GetTvSeries(language: 'en-US', page: 1)),
       child:
-          //  BlocBuilder<TvSeriesBloc, TvSeriesState>(
-          //   builder: (context, state) {
-          //     switch (state.runtimeType) {
-          //       case TvSeriesError:
-          //         return const Text(
-          //           'error',
-          //           style: TextStyle(color: Colors.amber),
-          //         );
-          //       case LoadTvSeries:
-          //         return const Text(
-          //           'has data',
-          //           style: TextStyle(color: Colors.amber),
-          //         );
-          //     }
-          //     return const Text(
-          //       'a',
-          //       style: TextStyle(color: Colors.amber),
-          //     );
-          //   },
-          // ),
-
           BlocBuilder<TvSeriesBloc, TvSeriesState>(builder: (context, state) {
         switch (state.runtimeType) {
           case TvSeriesInitial:
@@ -64,19 +41,20 @@ class _TvSeriesScreenState extends State<TvSeriesScreen> {
                 childAspectRatio: 0.54,
               ),
               itemBuilder: (BuildContext context, int index) {
-                log(state.tvseries?.list[index].id.toString() ?? '');
                 return MovieItem(
                   imageUrl: state.tvseries?.list[index].posterPath ?? '',
                   name: state.tvseries?.list[index].name ?? '',
                   onTap: () async {
                     final detail =
                         await DetailReponsitory(restApiClient: RestApiClient())
-                            .getDetail(
-                                movieId: state.tvseries?.list[index].id ?? 0,
+                            .getDetailTvSeries(
+                                tvId: state.tvseries?.list[index].id ?? 0,
                                 language: 'en-US');
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => DetailScreen(detail: detail),
+                        builder: (context) => DetailTVScreen(
+                          detail: detail,
+                        ),
                       ),
                     );
                   },

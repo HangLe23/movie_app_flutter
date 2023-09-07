@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -15,6 +16,7 @@ class TvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
       TvSeriesRepository(restApiClient: RestApiClient());
   TvSeriesBloc() : super(TvSeriesInitial()) {
     on<GetTvSeries>(onGetData);
+    on<GetRecommendation>(onGetRecommendation);
   }
 
   Future<FutureOr<void>> onGetData(
@@ -65,6 +67,22 @@ class TvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
         }
       }
       emit(ListTvSeries(tvseries: ListResponse<TvSeriesModel>(list: tvseries)));
+    } catch (e) {
+      emit(TvSeriesError(error: e.toString(), tvseries: null));
+      log(e.toString());
+    }
+  }
+
+  Future<FutureOr<void>> onGetRecommendation(
+      GetRecommendation event, Emitter<TvSeriesState> emit) async {
+    emit(LoadTvSeries());
+    try {
+      var movies = await reponsitory.getRecommendation(
+        language: event.language,
+        page: event.page,
+        tvId: event.tvId,
+      );
+      emit(ListTvSeries(tvseries: movies));
     } catch (e) {
       emit(TvSeriesError(error: e.toString(), tvseries: null));
     }

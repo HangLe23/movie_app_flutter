@@ -96,4 +96,22 @@ class MovieService {
         .toList();
     return ListResponse(list: listResponse);
   }
+
+  Future<ListResponse<MovieModel>> getRecommendation({
+    required int movieId,
+    required String language,
+    required int page,
+  }) async {
+    var request = MovieRequest.getRecommendations(
+      language: language,
+      page: page,
+      movieId: movieId,
+    );
+    final response = await apiClient.execute(request: request);
+    final listResponse = response
+        .toList()
+        .map<MovieModel>((e) => MovieModel.fromJson(e))
+        .toList();
+    return ListResponse(list: listResponse);
+  }
 }

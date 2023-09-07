@@ -69,4 +69,17 @@ class MovieRequest {
           'region': region,
         },
       );
+  static APIRequest getRecommendations(
+          {required String language,
+          required int page,
+          required int movieId}) =>
+      APIRequest(
+        method: HTTPMethods.get,
+        path: '/movie/$movieId/similar',
+        parameters: {
+          'language': language,
+          'page': page,
+          'movie_id': movieId,
+        },
+      );
 }

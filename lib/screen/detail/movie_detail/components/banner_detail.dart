@@ -11,7 +11,14 @@ class BannerDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        InternetImage(imageUrl: imgUrl),
+        imgUrl.isEmpty || imgUrl == 'null'
+            ? Image.asset(
+                'assets/images/themovie_app_icon.png',
+                height: 230,
+              )
+            : InternetImage(
+                imageUrl: imgUrl,
+              ),
         Positioned(
             left: 20,
             top: 30,

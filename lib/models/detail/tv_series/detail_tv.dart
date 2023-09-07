@@ -60,7 +60,7 @@ class DetailTvSeries {
   String? posterPath;
   List<ProductionCompanies>? productionCompanies;
   List<ProductionCountries>? productionCountries;
-  List<Seasons>? seasons;
+  List<TvSeasonDetail>? seasons;
   List<SpokenLanguages>? spokenLanguages;
   String? status;
   String? tagline;
@@ -81,7 +81,7 @@ class DetailTvSeries {
     id = json['id'];
     inProduction = json['in_production'];
     languages = List.castFrom<dynamic, String>(json['languages']);
-    lastAirDate = null;
+    lastAirDate = json['last_air_date'];
     lastEpisodeToAir = null;
     name = json['name'];
     nextEpisodeToAir = null;
@@ -101,8 +101,9 @@ class DetailTvSeries {
     productionCountries = List.from(json['production_countries'])
         .map((e) => ProductionCountries.fromJson(e))
         .toList();
-    seasons =
-        List.from(json['seasons']).map((e) => Seasons.fromJson(e)).toList();
+    seasons = List.from(json['seasons'])
+        .map((e) => TvSeasonDetail.fromJson(e))
+        .toList();
     spokenLanguages = List.from(json['spoken_languages'])
         .map((e) => SpokenLanguages.fromJson(e))
         .toList();

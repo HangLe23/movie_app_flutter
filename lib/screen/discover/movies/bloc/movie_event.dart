@@ -9,3 +9,11 @@ class GetMovie extends MovieEvent {
   final String region;
   GetMovie({required this.language, required this.page, required this.region});
 }
+
+class GetRecommendation extends MovieEvent {
+  final String language;
+  final int page;
+  final int movieId;
+  GetRecommendation(
+      {required this.language, required this.page, required this.movieId});
+}
