@@ -30,8 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  tmdb_api:
-
+  domain:
+    path: package_core/domain
+  shared_ui:
+    path: package_core/shared_ui
+  api:
+    path: package_core/api
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -51,6 +55,13 @@ dependencies:
   carousel_slider: ^4.2.1
   cached_network_image: ^3.2.3
   shimmer: ^3.0.0
+  flutter_screenutil: ^5.9.0
+  url_launcher: ^6.1.14
+  webview_flutter: ^4.2.4
+  pull_to_refresh: ^2.0.0
+  flutter_config: ^2.0.2
+  flutter_clean_architecture: ^5.0.4
+  easy_localization: ^3.0.3
 
 dev_dependencies:
   flutter_test:
