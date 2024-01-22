@@ -69,11 +69,11 @@ class GeneralSearchScreen extends StatelessWidget {
                         Expanded(
                           child: IndexedStack(
                             index: state.index,
-                            children: const [
-                              MovieScreen(),
-                              TvSeriesScreen(),
-                              DocumentaryScreen(),
-                              SportScreen(),
+                            children:  [
+                              const MovieScreen(),
+                              const TvSeriesScreen(),
+                              Text('Documentary', style: TextStyles.tab),
+                              Text('Sports', style: TextStyles.tab),
                             ],
                           ),
                         ),
