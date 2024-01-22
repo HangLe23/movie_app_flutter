@@ -4,7 +4,7 @@ class CustomColors {
   CustomColors._();
   static Color backgroudcolor = const Color(0xFF15141f);
   static Color textColor = const Color(0xFFFFFFFF);
-  static Color hint = const Color(0xFFBBBBBB);
+  static Color hint = const Color(0xFF6C6868);
   static Color button = const Color(0xFFef2d1a);
   static Color lineWhite = const Color(0xFFE9ECF2);
   static Color grey = const Color(0xFF808D9E);

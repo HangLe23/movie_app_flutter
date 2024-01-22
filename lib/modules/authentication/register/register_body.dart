@@ -153,7 +153,6 @@ class _RegisterBodyState extends State<RegisterBody> {
                         },
                         child: Text('Sign In', style: TextStyles.signup),
                       ),
-                      SizedBox(width: 20.h)
                     ],
                   )
                 ],
