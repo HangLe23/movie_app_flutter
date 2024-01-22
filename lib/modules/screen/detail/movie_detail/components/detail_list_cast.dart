@@ -40,7 +40,7 @@ class ListCast extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.only(left: 20),
-          height: 225.w,
+          height: 250.w,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) {
@@ -80,7 +80,7 @@ class ListCast extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.only(left: 20),
-          height: 225.w,
+          height: 250.w,
           width: double.infinity,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,

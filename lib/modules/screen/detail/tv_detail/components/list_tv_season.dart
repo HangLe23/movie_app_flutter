@@ -23,7 +23,7 @@ class ListSeason extends StatelessWidget {
         ]),
         Container(
           padding: const EdgeInsets.only(left: 20),
-          height: 275.w,
+          height: 300.w,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             separatorBuilder: (context, index) {

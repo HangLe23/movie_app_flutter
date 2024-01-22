@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app_flutter/modules/index.dart';
 import 'package:shared_ui/index.dart';
+import 'package:shared_ui/widget/text_field_password.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -69,7 +70,7 @@ class _LoginBodyState extends State<LoginBody> {
                         Text('Password', style: TextStyles.lato400Size20),
                       ],
                     ),
-                    TextFieldWidget(
+                    TextFieldPassword(
                         hint: 'Enter your password',
                         textedit: pass,
                         validator: (value) {

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app_flutter/index.dart';
 import 'package:shared_ui/index.dart';
+import 'package:shared_ui/widget/text_field_password.dart';
 
 class RegisterBody extends StatefulWidget {
   const RegisterBody({super.key});
@@ -68,7 +69,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                       Text('Password', style: TextStyles.lato400Size20),
                     ],
                   ),
-                  TextFieldWidget(
+                  TextFieldPassword(
                       hint: 'Enter your password',
                       textedit: pass,
                       validator: (value) {
@@ -83,7 +84,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                       Text('Confirm Password', style: TextStyles.lato400Size20),
                     ],
                   ),
-                  TextFieldWidget(
+                  TextFieldPassword(
                       validator: (String? value) {
                         return value != null && value != pass.text
                             ? "Passwords do not match"
